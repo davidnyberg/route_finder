@@ -3,7 +3,10 @@
 	import MapMarker from './MapMarker.svelte';
 </script>
 
-<Map lat={35} lon={-84} zoom={3.5}>
+<p>Find your next run/walk/bike route!</p>
+
+<!-- TODO: make markers dynamic from a query from osm -->
+<Map lat={58} lon={15} zoom={5.5}>
 	<MapMarker lat={37.8225} lon={-122.0024} label="Svelte Body Shaping"/>
 	<MapMarker lat={33.8981} lon={-118.4169} label="Svelte Barbershop & Essentials"/>
 	<MapMarker lat={29.7230} lon={-95.4189} label="Svelte Waxing Studio"/>
@@ -11,3 +14,10 @@
 	<MapMarker lat={40.6483} lon={-74.0237} label="Svelte Brands LLC"/>
 	<MapMarker lat={40.6986} lon={-74.4100} label="Svelte Medical Systems"/>
 </Map>
+
+
+<style>
+	p {
+		font-size: 3em;
+	}
+</style>
