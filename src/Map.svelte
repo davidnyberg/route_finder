@@ -2,6 +2,7 @@
 	import { onMount, setContext } from 'svelte';
 	import { mapbox, key } from './mapbox.js';
 
+
 	setContext(key, {
 		getMap: () => map
 	});
@@ -21,14 +22,20 @@
 		link.onload = () => {
 			map = new mapbox.Map({
 				container,
-				style: 'mapbox://styles/mapbox/streets-v9',
+				style: 'mapbox://styles/mapbox/satellite-v9',
 				center: [lon, lat],
 				zoom
 			});
+
+			var option = {
+				showCompass: false,
+				visualizePitch: true,
+			}
+			map.addControl(new mapbox.NavigationControl(option));
 		};
 
 		document.head.appendChild(link);
-
+		
 		return () => {
 			map.remove();
 			link.parentNode.removeChild(link);
@@ -46,6 +53,6 @@
 	div {
 		width: 100%;
 		height: 80%;
-		border-radius: 20px;
+		border-radius: 10px;
 	}
 </style>
