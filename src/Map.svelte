@@ -1,6 +1,6 @@
 <script>
 	import { onMount, setContext } from 'svelte';
-	import { mapbox, key } from './mapbox.js';
+	import { mapbox, MapboxDraw, key } from './mapbox.js';
 
 
 	setContext(key, {
@@ -27,11 +27,33 @@
 				zoom
 			});
 
-			var option = {
+			// Drawing of polygon on map
+			var draw = new MapboxDraw({
+				displayControlsDefault: false,
+				controls: {
+					polygon: true,
+					trash: true,
+				},
+			});
+
+			// +/- buttons to zoom in and out
+			var zoomButtons = new mapbox.NavigationControl({
 				showCompass: false,
-				visualizePitch: true,
+				visualizePitch: false,
+			});
+
+			map.addControl(draw, 'top-left');
+			map.addControl(zoomButtons);
+
+			map.on('draw.create', getMidPoint);
+			map.on('draw.delete', getMidPoint);
+			map.on('draw.update', getMidPoint);
+			// When the polygon is complete the bounding box can be used to query OSM
+			function getMidPoint(e) {
+				const data = draw.getAll();
+				const edgeNodes = data['features'][0]['geometry']['coordinates'][0];
+				console.log(edgeNodes);
 			}
-			map.addControl(new mapbox.NavigationControl(option));
 		};
 
 		document.head.appendChild(link);

@@ -1,6 +1,6 @@
 <script>
 	import Map from './Map.svelte';
-	import MapMarker from './MapMarker.svelte';
+	//import MapMarker from './MapMarker.svelte';
 	
 	let showMap = {visible: false};
 
@@ -26,7 +26,7 @@
 
 {#if showMap.visible}
 	<!-- TODO: make markers dynamic from a query from osm -->
-	<Map lat={58} lon={15} zoom={5.5}>
+	<Map lat={59.3} lon={18} zoom={10}>
 <!-- 		<MapMarker lat={37.8225} lon={-122.0024} label="Svelte Body Shaping"/>
 		<MapMarker lat={33.8981} lon={-118.4169} label="Svelte Barbershop & Essentials"/>
 		<MapMarker lat={29.7230} lon={-95.4189} label="Svelte Waxing Studio"/>
