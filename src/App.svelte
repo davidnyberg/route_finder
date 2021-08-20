@@ -7,6 +7,11 @@
 	function handleShowMap() {
 		showMap.visible = !showMap.visible
 	}
+
+	function findTrailsOSM() {
+		console.log("OSM");
+		fetch("/get_trails?coordinates=test")
+	}
 </script>
 
 
@@ -22,6 +27,10 @@
 		Show map
 	</button>
 {/if}
+
+<button on:click={findTrailsOSM}>
+	Find Trails
+</button>
 </div>
 
 {#if showMap.visible}
