@@ -52,6 +52,7 @@
 			function getMidPoint(e) {
 				const data = draw.getAll();
 				const edgeNodes = data['features'][0]['geometry']['coordinates'][0];
+				//edge nodes are the coords
 				console.log(edgeNodes);
 			}
 		};
