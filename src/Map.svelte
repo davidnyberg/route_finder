@@ -53,7 +53,8 @@
 				const data = draw.getAll();
 				const edgeNodes = data['features'][0]['geometry']['coordinates'][0];
 				//edge nodes are the coords
-				console.log(edgeNodes);
+				//console.log(edgeNodes);
+				//coordinates is the exported value
 				coordinates = edgeNodes
 			}
 		};
@@ -69,7 +70,7 @@
 
 <div bind:this={container}>
 	{#if map}
-		<slot></slot>
+		<slot> </slot>
 	{/if}
 </div>
 
