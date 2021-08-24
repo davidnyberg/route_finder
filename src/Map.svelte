@@ -10,7 +10,7 @@
 	export let lat;
 	export let lon;
 	export let zoom;
-
+	export let coordinates;
 	let container;
 	let map;
 
@@ -54,6 +54,7 @@
 				const edgeNodes = data['features'][0]['geometry']['coordinates'][0];
 				//edge nodes are the coords
 				console.log(edgeNodes);
+				coordinates = edgeNodes
 			}
 		};
 

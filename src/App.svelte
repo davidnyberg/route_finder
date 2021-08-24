@@ -9,12 +9,15 @@
 	}
 
 	function findTrailsOSM() {
+		console.log(coordinates)
 		console.log("Clicked OSM request");
 		fetch("/get_trails")
 			.then(response => {
 				console.log(response.status);
 			});
 	}
+
+	let coordinates;
 </script>
 
 
@@ -31,6 +34,7 @@
 	</button>
 {/if}
 
+
 <button on:click={findTrailsOSM}>
 	Find Trails
 </button>
@@ -38,7 +42,7 @@
 
 {#if showMap.visible}
 	<!-- TODO: make markers dynamic from a query from osm -->
-	<Map lat={59.3} lon={18} zoom={10}>
+	<Map bind:coordinates={coordinates} lat={59.3} lon={18} zoom={10}>
 <!-- 		<MapMarker lat={37.8225} lon={-122.0024} label="Svelte Body Shaping"/>
 		<MapMarker lat={33.8981} lon={-118.4169} label="Svelte Barbershop & Essentials"/>
 		<MapMarker lat={29.7230} lon={-95.4189} label="Svelte Waxing Studio"/>
