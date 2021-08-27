@@ -11,7 +11,8 @@
 	function findTrailsOSM() {
 		console.log(coordinates)
 		console.log("Clicked OSM request");
-		fetch("/get_trails?coordinates=test")
+		let fixed_data = JSON.stringify(coordinates)
+		fetch("/get_trails?coordinates=" + fixed_data)
 			.then(response => {
 				console.log(response.status);
 			});

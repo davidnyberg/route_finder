@@ -14,15 +14,16 @@ def index():
 def home(path):
     return send_from_directory('public', path)
 
-@app.route("/get_trails", methods=['POST'])
+@app.route("/get_trails", methods=['GET'])
 def get_trails():
     """
     Access open street map overpass API to find trails
     """
-    coordinates = request.json('coordinates')
+    coordinates = request.args.get('coordinates')
     app.logger.info(coordinates)
     print('hello', flush=True)
     return 'Sucesss', 200
+
 
 
 if __name__ == "__main__":

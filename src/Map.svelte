@@ -10,7 +10,7 @@
 	export let lat;
 	export let lon;
 	export let zoom;
-	export let coordinates;
+	export let coordinates = null;
 	let container;
 	let map;
 
