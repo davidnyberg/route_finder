@@ -1,4 +1,6 @@
 from flask import Flask, send_from_directory, request, jsonify
+from flask.wrappers import Response
+import overpy
 import logging
 app = Flask(__name__)
 
@@ -20,10 +22,22 @@ def get_trails():
     Access open street map overpass API to find trails
     """
     coordinates = request.args.get('coordinates')
-    app.logger.info(coordinates)
-    print('hello', flush=True)
-    return 'Sucesss', 200
+    trails = OSM_api(coordinates=coordinates)
+    return Response('Sucesss', 200)
 
+def OSM_api(coordinates=None):
+    '''
+    https://python-overpy.readthedocs.io/en/latest/
+    Calls overpass api
+    '''
+    api = overpy.Overpass()
+
+    app.logger.info(coordinates)
+
+    # fetch all ways and nodes
+    result = api.query("node(50.745,7.17,50.75,7.18);out;")
+
+    return Response('Trail info', 200)
 
 
 if __name__ == "__main__":
