@@ -35,6 +35,7 @@ def OSM_api(coordinates=None):
     app.logger.info(coordinates)
 
     # fetch all ways and nodes
+    # placeholder call
     result = api.query("node(50.745,7.17,50.75,7.18);out;")
 
     return Response('Trail info', 200)

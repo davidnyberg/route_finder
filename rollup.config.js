@@ -4,9 +4,11 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
-import dotenv from "dotenv"
-dotenv.config()
+import { config as configDotenv } from 'dotenv';
+import replace from '@rollup/plugin-replace';
 
+
+configDotenv()
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
@@ -39,16 +41,21 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		replace({
+			__myapp: JSON.stringify({
+				env: {
+					isProd: production,
+					MAPBOXKEY: process.env.MAPBOXKEY,
+			  },
+			}),
+		  }),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production
-			},
-			preprocess: sveltePreprocess({
-				// 👇 Add this attribute
-				replace: [["process.env.MY_ENV_VAR", process.env.MY_ENV_VAR]],
-			}),
+			}
 		}),
+
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
